@@ -241,7 +241,7 @@ function mixintprog{T<:Real,Ti<:Integer,P<:Union(GLPK.IntoptParam,Nothing),Px<:U
     lp, n = linprog__setup_prob(f, A, b, Aeq, beq, lb, ub, params)
     mixintprog_set_col_kind(lp, n, col_kind)
 
-    if params == nothing || pointer(params) == C_NULL || params["presolve"] != GLPK.ON
+    if params == nothing || params.presolve != GLPK.ON
         ret_ps = GLPK.simplex(lp, params_presolve)
         if ret_ps != 0
             # throw exception here ?
