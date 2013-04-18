@@ -449,11 +449,11 @@ function linprog__setup_prob{T<:Real, P<:Union(GLPK.Param, Nothing)}(f::Vector{T
     end
 
     if (m > 0 && issparse(A)) && (meq > 0 && issparse(Aeq))
-        (ia, ja, ar) = findn_nzs([A; Aeq])
+        (ia, ja, ar) = findnz([A; Aeq])
     elseif (m > 0 && issparse(A)) && (meq == 0)
-        (ia, ja, ar) = findn_nzs(A)
+        (ia, ja, ar) = findnz(A)
     elseif (m == 0) && (meq > 0 && issparse(Aeq))
-        (ia, ja, ar) = findn_nzs(Aeq)
+        (ia, ja, ar) = findnz(Aeq)
     else
         (ia, ja, ar) = linprog__dense_matrices_to_glpk_format(m, meq, n, A, Aeq)
     end
