@@ -329,7 +329,7 @@ let msg_map = [
 
     global print_linprog_flag
     function print_linprog_flag(io::IO, flag::Int32)
-        if has(msg_map, flag)
+        if haskey(msg_map, flag)
             print(io, msg_map[flag])
         else
             error("unknown GLPK flag")
